@@ -8,6 +8,10 @@ Summary:
 (2) Runtime Differences between ArrayLists and LinkedLists
 (3) Stack structure and methods
 (4) Binary Search of an sorted array
+(5) Map default methods
+(6) Map method implementation
+
+---------------------------------------------------------------
 
 Problem 1:
 Part A - Sample incorrect output

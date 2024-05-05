@@ -3,3 +3,53 @@
 // Fall 2017 Exam Solutions
 // C/C++
 
+Summary:
+(7) Makefile
+
+---------------------------------------------------------------
+
+Problem 7:
+Makefile
+    grades: grades.o Table.o listFuncs.o
+        g++ -ggdb –Wall grades.o Table.o listFuncs.o –o grades  (a)
+    grades.o: grades.cpp Table.h
+        g++ -ggdb –Wall –c grades.cpp                           (b)
+    Table.o: Table.cpp Table.h listFuncs.h 
+        g++ -ggdb –Wall –c Table.cpp                            (c)
+    listFuncs.o: listFuncs.cpp listFuncs.h 
+        g++ -ggdb –Wall –c listFuncs.cpp                        (d)
+Unix Shell Prompts
+% ls
+    grades.cpp    listFuncs.h    listFuncs.cpp    Table.cpp   Table.h    Makefile  
+% gmake grades
+    Action: (b) -> (c) -> (d) -> (a)
+% gmake Table.o
+    Action: (c)
+% touch listFuncs.h
+    (Note: touch changes the last-modified date.  
+    Alternatively, you could edit the  listFuncs.h file and save a changed version.) 
+% gmake grades
+    Action: (c) -> (d) -> (a)
+
+Problem 8:
+Part A - Runthrough of code as follows
+(1) ListType myList = new Node(1);
+    myList -> Node1[data: 1, next: nullptr]
+(2) myList->next = new Node(2);
+    myList -> Node1[data:1, next: Node2] -> Node2[data: 2, next: nullptr]
+(3) Node *p = myList->next;
+    p -> Node2[data:2, next: nullptr]
+(4) p->next = new Node(3);
+    p -> Node2[data: 2, next: Node3] -> Node3[data: 3, next: nullptr]
+(5) printList(myList);
+    myList -> Node1[data:1, next: Node2] -> Node2[data: 2, next: Node3]
+    -> Node3[data: 3, next: nullptr]
+(6) insertFront(myList, 57);
+    list -> newNode[data: 57, next: Node1] -> Node1[data:1, next: Node2]
+    -> Node2[data: 2, next: Node3] -> Node3[data: 3, next: nullptr]
+(7) printList(myList);
+    myList -> Node1[data:1, next: Node2] -> Node2[data: 2, next: Node3]
+    -> Node3[data: 3, next: nullptr]
+Part B - Output of printList
+1 2 3
+1 2 3
