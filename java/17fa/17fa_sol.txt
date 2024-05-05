@@ -1,0 +1,207 @@
+// Hsin Li
+// 05/04/2024
+// Fall 2017 Exam Solutions
+// Java
+
+Summary:
+(1) Setting conditions, fixing syntax errors
+(2) Runtime Differences between ArrayLists and LinkedLists
+(3) Stack structure and methods
+(4) Binary Search of an sorted array
+
+Problem 1:
+Part A - Sample incorrect output
+    vals: [3]
+    returns: false
+    expected: true
+Part B - Fixing the code
+- add condition for arrays length 0 and 1
+- only return false if array is in decreasing order
+- return true for all other conditions
+
+Problem 2:
+Assume list is of size n.
+A:
+printList1(anArrayList);
+    runtime is O(n).
+    Iterates with ListIterator.
+    hasNext() and next() methods each take O(1).
+    Iterates through list of size n once.
+B:
+printList2(anArrayList);
+    runtime is O(n).
+    Iterates with list.get(i).
+    list.get(i) takes O(1) for ArrayLists.
+    Iterates through list of size n once.
+C:
+printList1(aLinkedList);
+    runtime is O(n).
+    Iterates with ListIterator.
+    hasNext() and next() methods each take O(1).
+    Iterates through list of size n once.
+D:
+printList2(aLinkedList);
+    runtime is O(n^2).
+    list.get(i) takes O(i) time for LinkedList, where i is the index.
+    Since 'i' increases with each iteration, the overall time complexity
+    becomes O(1) + O(2) + ... + O(n), which sums up to n*(n+1)/2
+
+Notes:
+Runtime Differences between ArrayLists and LinkedLists
+ArrayLists (unordered):
+- Lookup by index: O(1)
+- Insert by index: O(n)
+- Remove by index: O(n)
+- Print all elements: O(n)
+LinkedLists (unordered):
+- Lookup by index: O(n)
+- Insert by index: O(n)
+- Remove by index: O(n)
+- Print all elements: O(n^2)
+
+Problem 3:
+Part A - Runthrough as follows:
+s.push(1)
+    stack: [1]
+    printed:
+i = 2
+    stack: [1, 4, 2]
+    printed: 2
+    stack: [1, 4]
+i = 3
+    stack: [1, 4, 6, 5]
+    printed: 2 5
+    stack: [1, 4, 6]
+i = 4
+    stack: [1, 4, 6, 8, 7]
+    printed: 2 5 7
+    stack: [2, 5, 7]
+Part B - Contents of stack at // *
+stack: [1, 4, 6, 8]
+
+Problem 4:
+Binary Search on an array
+Array: [0      1      2      3      4      5      6      7      8     ]
+       [Flynn  Gus    Hank   Jesse  Marie  Mike   Saul   Skyler Walter]
+1. target = Mike
+    mid = 4
+        Mike > Marie
+        left = 5
+    mid = 6
+        Mike < Saul
+        right = 5
+    mid = 5
+        Mike == Mike
+        index = 5
+2. target = Lydia
+    mid = 4
+        Lydia < Marie
+        right = 3
+    mid = 1
+        Lydia > Gus
+        left = 2
+    mid = 2
+        Lydia > Hank
+        left = 3
+    mid = 3
+        Lydia > Jesse
+        left = 4
+    left >= right
+        index not found
+3. target = Walter
+    mid = 4
+        Walter > Marie
+        left = 5
+    mid = 6
+        Walter > Saul
+        left = 7
+    mid = 7
+        Walter > Skyler
+        left = 8
+    mid = 8
+        Walter == Walter
+        index = 8
+
+Notes:
+Here's how binary search on sorted array works
+1. Initialize:
+    Begin with entire array or list and set two pointers 'left' and 'right'
+2. Find the middle:
+    Calculate middle index '(left + right)/2'
+3. Compare:
+    Compare target value with element at middle index
+    - if target = middle, search is successful, index is returned
+    - if target < middle, update 'right' pointer to be one less than middle index
+    - if target > middle, update 'left' pointer to be one more than middle index
+4. Repeat steps 2 and 3 until target is valule is found.
+    If pointers cross each other without finding target, the target is not in array
+
+Problem 5:
+Part A - update map value
+    grades.put("Sam", 99);
+    // alternatives
+    grades.replace("Sam", 99)
+Part B - update map key
+    grades.put("Zhou", grades.remove("Joe"));
+    // alternatives
+    grades.put("Zhou", grades.get("Joe"));
+    grades.remove("Joe");
+
+Notes:
+Manipulative methods
+    put(K key, V value);
+    replace(K key, V value);
+    replace(K key, V oldValue, V newValue);
+    remove(Object key);
+    remove(Object key, Object value);
+    clear();
+Other commonly used methods
+    get(Object key);
+    isEmpty();
+    hashCode();
+    containsKey(Object key);
+    containsValue(Object value);
+    size();
+    keySet();   // returns a Set view of keys contained in this map
+    values();   // returns a Collection view of values contained in this map
+    Entry.getKey();
+    Entry.getValue();
+
+Problem 6:
+Part A - Implement getKeysWithValue
+Part B - Tree Map runtime
+    We have to traverse through all entries of the TreeMap and check whether the value
+    of an entry matches our target value, then add it to our list. We have a total 
+    number of n iterations. The methods 'getKey()' and 'getValue' each takes O(1). 
+    Comparing the values also take O(1). The big-O worst case running time for this code
+    is O(n).
+
+Notes:
+About Tree Maps
+1. Sorted order
+    maintains elements in sorted order based on natural ordering of keys using a custom
+    Comparator provided at the time of creation
+2. Red-Black Tree
+    ensures efficient performance for operations like insertion, deletion, and Lookup
+3. Key Constraints
+    Keys must be unique and must not be null
+4. Performance
+    Provides guaranteed O(log n) time complexity for basic operations like put, get 
+    and remove, making it suitable for scenarios where you need efficient access to
+    sorted key-value pairs
+5. Iteration order
+    iteration over elements follows the sorted order of keys
+6. NavigableMap Interface
+    provides additional navigation and retrieval methods based on the order of keys
+7. Synchronization
+    not synchronized by default. If thread safety is required, you can use 
+    'Collections.synchronizedSortedMap()' to obtain a synchronized view of the TreeMap.
+
+Big-O for map operations
+| Operation                      | Ordered Array | Ordered List | Unordered Array | Unordered List | Balanced Search Tree | Hash Table |
+|--------------------------------|---------------|--------------|-----------------|----------------|----------------------|------------|
+| Lookup by Key                  | O(log n)      | O(log n)     | O(n)            | O(n)           | O(log n)             | O(n)       |
+| Insert (Key, Value)            | O(n)          | O(n)         | O(n)            | O(n)           | O(log n)             | O(n)       |
+| Remove by Key                  | O(n)          | O(n)         | O(n)            | O(n)           | O(log n)             | O(1)       |
+| Visit Elements in Order by Key | O(n)          | O(n)         | O(n log n)      | O(n log n)     | O(n)                 | O(n log n) |
+| Visit Elements in Any Order    | O(n)          | O(n)         | O(n)            | O(n)           | O(n)                 | O(n)       |
