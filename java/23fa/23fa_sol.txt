@@ -1,0 +1,141 @@
+// Hsin Li
+// 05/04/2024
+// Fall 2023 Exam Solutions
+// Java
+
+Summary:
+(1) keys and hashCode relation
+(2) Commenting methods, understanding implementation
+(3) Dynamic programming
+(4) TreeMap methods and implementation
+(5) Exceptions and throwing errors
+(6) Java and C++ definitions
+(7) Interfaces and calling methods
+
+---------------------------------------------------------------
+
+Problem 1:
+Complete the contract that KeyType 's equals and hashCode methods must satisfy 
+for a KeyType to be used as the key type for a HashMap by filling in the boxes
+below, choosing from the options 1 through 6 for each of the boxes.  In the 
+following, k1 and k2 are two objects of type KeyType.
+if [  4  ] then [  1  ]
+(1) k1.hashCode() == k2.hashCode()
+(2) k1.hashCode() != k2.hashCode()
+(3) k1.hashCode() < k2.hashCode()
+(4) k1.equals(k2)
+(5) !k1.equals(k2)
+(6) k1.compareTo(k2) < 0
+Explanation:
+(1) k1.hashCode() == k2.hashCode()
+    If two objects are equal according to the equals(Object) method, then calling
+    the 'hashCode()' method on each of the two objects must produce the same
+    integer result.
+(4) k1.equals(k2)
+    For any two non-null objects k1 and k2, this method should return true if and
+    only if k1 and k2 represent the same object, according to their equals(Object)
+    method.
+
+Problem 2:
+// Method that checks if all 'a' comes before all 'b'
+    first while loop exists when it reaches a character that is not 'a'
+    it stores all the 'a' up until that point in the stack s
+// and if the number 'a' equals to number of 'b'
+    second while loop exits when it reaches a character that is not 'b',
+    or if we reach the end of the string, or if the stack s becomes empty
+
+    the method returns true if we've reached the end of the string, and if
+    we've popped all the 'a' in stack s, meaning the number of 'a' and 'b'
+    are equal.
+
+Problem 3:
+1. return -1;
+2. return mid;
+3. return binSearchR(words, target, low, mid-1);
+4. return binSearchR(words, target, mid+1, high);
+
+Problem 4:
+Visual representation of a tree map:
+      20
+     /  \
+   10   30
+  / \   / \
+ 5  15 25 35
+In this TreeMap, the keys are the numbers 5, 10, 15, 20, 25, 30, 35. 
+Each key would have an associated value, but those aren't shown in this diagram.
+Implementation Guide:
+    Map methods
+    - merge(K key, V value, BiFunction<? super V,? super V,? extends V> remappingFunction)
+        If the specified key is not already associated with a value or is associated with 
+        null, associates it with the given non-null value.
+    - put(K key, V value)
+        Associates the specified value with the specified key in this map (optional operation).
+    - remove(Object key)
+        Removes the mapping for a key from this map if it is present (optional operation).
+    Hints
+    - remove entry with value of 0
+Runtime of addIn()
+- (1) Merging the terms of hte input polynoimal 'b' into polynoimal 'a'
+    merge operation takes O(m log n), where n is the number of terms in polynomial 'a',
+    and m is the number of terms in polynomial 'b'
+- (2) Removing terms with a coefficient of 0 from polynomial 'a'
+    iterating over the new 'a', which is in the worst case size m+n. This takes O(m + n)
+
+Problem 5:
+Part A - Sample data file for Error B
+    throws Error B when input file hasNext(), but the next element is not an integer
+    input: 1 2 b 3 4
+Part B - Sample data file both prints a message AND prints "Average is ..."
+    When there is no input data file, the program throws Error C becauase of FileNotFoundException,
+    however, in main, we've set total = 0, and given default data for sum and total to calculate
+    average, there will still be an Average.
+Part C - Output of Part B
+    Error C
+    Average is 14.0
+
+Problem 6:
+What parameter passing mode in C++ most closely matches the semantics of parameter passing of
+objects in Java? (Circle letter of correct response)
+    (c) passing a pointer to an object by value
+    In Java, when you pass an object to a method, you're actually passing the reference to 
+    that object (which is essentially a pointer) by value. This means that you can modify 
+    the object that the reference points to, but you can't change the reference itself to 
+    point to a different object. This is similar to passing a pointer to an object by value 
+    in C++.
+
+Problem 7:
+Part A - call to updateAll elements with their squares
+    // myList before call to updateAll: [4, 3, 2, 1] 
+    // myList after call to updateAll:  [16, 9, 4, 1]
+    updateAll(myList, x -> x * x);
+Part B - call to updateAll to replace all even elements in list
+    // myList before call to updateAll: [2, 4, 5, 6, 7] 
+    // myList after call to updateAll:  [0, 0, 5, 0, 7]  
+    updateAll(myList, x % 2 == 0 ? 0 : x);
+About Interfaces
+In Java, an interface is a reference type, similar to a class, that can contain only constants,
+method signatures, default methods, static methods, and nested types. Interfaces cannot contain 
+instance fields.
+Example:
+    // Define an interface
+    interface Animal {
+        void makeSound();
+    }
+
+    // Implement the interface in a class
+    class Dog implements Animal {
+        // Implement the method declared in the interface
+        public void makeSound() {
+            System.out.println("Woof");
+        }
+    }
+
+    // Using the implemented class
+    public class Main {
+        public static void main(String[] args) {
+            // Create an instance of the class that implements the interface
+            Dog dog = new Dog();
+            // Call the method defined in the interface
+            dog.makeSound(); // Output: Woof
+        }
+    }

@@ -8,6 +8,7 @@
         "lib/**/*.jar"
     ],
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -1,7 +1,7 @@
 // Hsin Li
 // 05/04/2024
 // Problem 9 of Fall 2017 Exam
-// Description: 
+// Description: C++ implementation of removeEveryOther function
 
 #include <iostream>
 #include <vector>

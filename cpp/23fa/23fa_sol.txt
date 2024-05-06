@@ -1,0 +1,67 @@
+// Hsin Li
+// 05/04/2024
+// Fall 2023 Exam Solutions
+// C++
+
+Summary:
+(8) box-and-pointer diagram
+(9) Makefile
+(10)LinkedList structure
+
+---------------------------------------------------------------
+
+Problem 8:
+Part A - box-and-pointer diagram
+(1) ListType myList = new Node(1);
+    myList -> Node1[data: 1, next: nullptr]
+(2) myList->next = new Node(2);
+    myList -> Node1[data: 1, next: Node2] -> Node2[data: 2, next: nullptr]
+(3) Node *p = myList->next;
+    p -> Node2[data: 2, next: nullptr]
+(4) p->next = new Node(3);
+    p -> Node2[data: 2, next: Node3] -> Node3[data: 3, next: nullptr]
+(5) printList(myList);
+    myList -> Node1[data: 1, next: Node2] -> Node2[data: 2, next: Node3]
+    -> Node3[data: 3, next: nullptr]
+(6) removeLast(myList);
+        if (list == nullptr)    // list is (1 2 3) so list != nullpter
+        if (list->ext == nullptr)    // list is (1 2 3) so list->next != nullptr
+        while (list->next->next != nullptr)    // list enters while loop
+            list = list->next;       // list -> Node2 -> Node3 -> nullptr
+                                     // ends 1st iteration
+        while (list->next->next != nullptr)    // list->next->next == nullptr
+                                               // exits while loop
+        delete list->next;      // list -> Node2 -> nullptr
+        list->next = nullptr;   // list -> Node2 -> nullptr
+        myList -> Node2[data: 2, next: nullptr]
+(7) printList(myList); 
+    myList -> Node2[data: 2, next: nullptr]
+Part B - Output of program
+    (1 2 3)
+    (2)
+
+Problem 9:
+Makefile
+    grades: grades.o Table.o
+        g++ -ggdb –Wall grades.o Table.o –o grades              (a)
+    Table.o: Table.cpp Table.h
+        g++ -ggdb –Wall –c Table.cpp                            (b)
+    grades.o: grades.cpp Table.h
+        g++ -ggdb –Wall –c grades.cpp                           (c)
+Unix Shell Prompts
+% ls
+    grades.cpp    Table.cpp   Table.h    Makefile
+% make Table.o
+    Action: (b)
+% make grades
+    Action: (c) -> (a)
+% touch Table.cpp
+    (Note: touch changes the last-modified date.  Alternatively you could edit 
+    the Table.cpp file and save a changed version.) 
+% make grades
+    Action: (b) -> (a)
+
+Problem 10:
+Hints
+    - Condition for if list is empty
+    - Condition for if newNode is smaller than first node in list

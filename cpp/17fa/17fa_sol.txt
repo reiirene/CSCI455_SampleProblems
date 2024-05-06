@@ -5,6 +5,8 @@
 
 Summary:
 (7) Makefile
+(8) LinkedList and parameter passing
+(9) C++ implementation of removeEveryOther function
 
 ---------------------------------------------------------------
 
@@ -53,3 +55,10 @@ Part A - Runthrough of code as follows
 Part B - Output of printList
 1 2 3
 1 2 3
+
+
+Problem 9:
+Hints:
+    - Set initial condition for lists with size 0 and 1
+    - break if current node becomes nullptr
+
