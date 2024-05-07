@@ -55,3 +55,9 @@ Cstring functions:
 Problem 11:
 Hint:
     - list and list->next are not nullptr, but list->next->next should be nullptr
+
+Problem 12:
+Hint:
+    - check if incrementing by 1
+    - link prevous node to new node
+    - link new node to curr node
