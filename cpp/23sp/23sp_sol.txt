@@ -1,0 +1,57 @@
+// Hsin Li
+// 05/04/2024
+// Spring 2023 Exam Solutions
+// C++
+
+Summary:
+(9) Pointers
+(10) Cstring
+(11) + (12) Linked List function implementation
+
+---------------------------------------------------------------\
+
+Problem 9:
+1. Sam
+2. 25
+3. 25
+4. 25
+5. 0
+6. 25
+7. 25
+8. 30
+9. 30
+
+Problem 10:
+Hints:
+    - strlen() can be used on words[i]
+    - allocate memory for whitespaces
+    - allocate memory for NULL terminator
+Cstring functions:
+    // Define a character array to hold the C-style string
+    char myString[20]; // Allocate enough memory for the string
+
+    // Initialize the C-style string
+    strcpy(myString, "Hello, world!"); // Copy "Hello, world!" into myString
+
+    // Output the C-style string
+    std::cout << "C-style string: " << myString << std::endl;
+
+    // Get the length of the C-style string
+    int length = strlen(myString); // Length excluding the null terminator
+    std::cout << "Length of the string: " << length << std::endl;
+
+    // Concatenate another string
+    strcat(myString, " How are you?"); // Append " How are you?" to myString
+    std::cout << "Concatenated string: " << myString << std::endl;
+
+    // Compare strings
+    char anotherString[] = "Hello, world! How are you?";
+    if (strcmp(myString, anotherString) == 0) {
+        std::cout << "Strings are equal." << std::endl;
+    } else {
+        std::cout << "Strings are not equal." << std::endl;
+    }
+
+Problem 11:
+Hint:
+    - list and list->next are not nullptr, but list->next->next should be nullptr

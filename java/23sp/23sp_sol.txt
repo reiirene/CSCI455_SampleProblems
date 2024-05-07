@@ -1,0 +1,150 @@
+// Hsin Li
+// 05/04/2024
+// Spring 2023 Exam Solutions
+// Java
+
+Summary:
+(1) big-O runtime
+(2) Binary Search
+(3) Insertion Sort
+(4) Recursion
+(5) Constructors and class implementation
+(6) Exception definitions
+(7) Map structure and methods
+(8) Stack structure and methods
+
+---------------------------------------------------------------
+
+Problem 1:
+Give the big-O worst case time to solve each of the following 
+problems (put your answers in the space provided to the left):
+1. use insertion sort to sort n values in an array
+    O(n^2)
+2. search for a value in a sorted array of size n
+    O(log n)
+3. reverse the values in an array of size n
+    O(n)
+4. look up a key in a balanced binary search tree of size n
+    O(log n)
+    // On average O(log n), but in the worst case it could still be
+    // O(n) if the tree becomes unbalanced.
+5. compute the minimum and maximum values in an array of size n
+    O(n)
+6. do list.get(i) where list is a Java LinkedList object of size n
+    O(n)
+7. do list.get(i) where list is a Java ArrayList object of size n
+    O(1)
+8. merge two sorted lists of length n
+    O(n)
+9. list all the keys in order in a balanced binary search tree of size n
+    O(n)
+10. determine whether a linked list of n ints is already sorted
+    O(n)
+
+Problem 2:
+Not counting any eliminated in the first iteration, roughly how many 
+elements are eliminated from further consideration in the second loop 
+iteration of a binary search in an array of n elements (i.e., assuming 
+we didn't find the value in that iteration)?
+    n/4
+
+Problem 3:
+What is true about the first k elements in the array before pass k of
+insertion sort?
+    (b) they are k values in sorted order
+
+Problem 4:
+1. if (start == nums.length)
+2. return -1;
+3. int lastOfRest = posLastR(nums, start + 1);
+4. return lastOfRest;
+5. if (nums[start] < 0)
+6. return start;
+7. return -1
+
+Problem 5:
+Hints:
+public class ALIterator {}
+    - declare private variables
+public ALIterator ()
+    - initialize the private variables
+public boolean hasNext()
+    - consider the max cursor index
+public Integer next()
+    - use the hasNext() method
+    - throw new NoSuchElementException();
+    - utilize post-increment operator (cursor++)
+
+Problem 6:
+(b) the client can avoid this exception
+About Exceptions
+- Checked Exceptions
+    - checked at compile time by the Java compiler
+    - usually external to Java Virtual Machine (JVM) and represent conditions
+      that a program might want to recover from, such as I/O errors, file not
+      found, network connection errors, etc.
+    - must be either caught by enclosing them in a try-catch block or declared
+      using the 'throw' clause in the method signature
+    - e.g., 'IOException', 'FileNotFoundException', 'SQLException'
+    - Example of Checked Exception (IOException):
+
+        import java.io.*;
+        public class Main {
+            public static void main(String[] args) {
+                try {
+                    FileReader file = new FileReader("file.txt");
+                    // Other code that might throw IOException
+                } catch (IOException e) {
+                    // Handling IOException
+                    e.printStackTrace();
+                }
+            }
+        }
+
+- Unchecked Exceptions
+    - also known as runtime exceptions, are not checked at compile time
+    - often caused by programming errors, such as attempting to access an array
+      element that doesn't exist or dividing by zero
+    - do NOT nee to be explicitly handled by enclosing them in a try-catch block
+      or declaring them with 'throws'
+    - e.g., 'NullPointerException', 'ArrayIndexOutOfBoundsException',
+      'NoSuchElementException'
+    - Example of Unchecked Exception (NullPointerException):
+
+        public class Main {
+            public static void main(String[] args) {
+                String str = null;
+                System.out.println(str.length()); // This line will throw NullPointerException
+            }
+        }
+
+Problem 7:
+Hints
+    - Boolean status = map.get(words[i]);
+        - if key exists, value exists
+        - if key does not exist, value == null
+
+Problem 8:
+values of s before call: top-> 1 6 7 0 5 4 2
+Part A -
+    s: {5, 4, 2}
+    tmpStack: {7, 6, 1}
+Part B -
+    tmpStack: {}
+    result: {1 6 7}
+Part C -
+    s: {}
+    result: {2 4 5 1 6 7}
+
+
+---------------------------------------------------------------
+Notes:
+Selection sort:
+    Repeatedly finding the smallest element and swapping it to the front
+Insertion sort:
+    Assume initial sequence is already sorted. Enlarge the sequence by inserting
+    the next array element a[k+1] until we reach the end.
+Merge sort:
+    Sort an array by cutting the array in half, recursively sorting each half, then
+    merging the sorted halves
+

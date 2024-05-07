@@ -1,7 +1,7 @@
 // Hsin Li
 // 05/04/2024
 // Problem 10 of Fall 2023 Exam
-// Description: 
+// Description: Linked List structure and implementation
 
 #include <iostream>
 
